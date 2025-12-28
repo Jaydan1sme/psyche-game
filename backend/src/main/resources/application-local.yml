@@ -1,0 +1,53 @@
+# 本地环境配置
+spring:
+  # 数据库配置 - H2 嵌入式数据库
+  datasource:
+    url: jdbc:h2:file:./db/psychegame;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 20
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+  
+  # H2 控制台配置
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        web-allow-others: true
+  
+  # Redis 配置（本地单机版）
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password:
+      database: 0
+
+# 日志配置（本地环境）
+logging:
+  level:
+    com.psychegame: debug
+    org.springframework: info
+    org.mybatis: debug
+    org.h2: info
+
+# 本地部署配置
+local:
+  deploy:
+    enabled: true
+    service:
+      redis:
+        host: localhost
+        port: 6379
+      nginx:
+        host: localhost
+        port: 80
+      frontend:
+        host: localhost
+        port: 5173

@@ -1,0 +1,82 @@
+# 通用配置
+spring:
+  application:
+    name: psyche-game-backend
+  profiles:
+    active: local  # 默认使用本地配置
+  
+  # 资源处理
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+  
+  # Redis 配置
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password:
+      database: 0
+      timeout: 10s
+  
+  # WebSocket 配置
+  websocket:
+    server:
+      enabled: true
+      port: 8081
+  
+  # 跨域配置
+  mvc:
+    cors:
+      allowed-origins: "*"
+      allowed-methods: "GET,POST,PUT,DELETE,OPTIONS"
+      allowed-headers: "*"
+      allow-credentials: true
+
+# 服务器配置
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+# MyBatis 配置
+mybatis:
+  mapper-locations: classpath:/mapper/**/*.xml
+  type-aliases-package: com.psychegame.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# Knife4j 配置
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
+  
+# JWT 配置
+jwt:
+  secret: psyche-game-secret-key-2025
+  expiration: 7200  # 2小时
+  refresh-expiration: 604800  # 7天
+
+# 文件存储配置
+file:
+  upload:
+    path: ./uploads/
+    allowed-types: image/jpeg,image/png,image/gif
+    max-size: 10485760  # 10MB
+
+# 日志配置
+logging:
+  level:
+    com.psychegame: debug
+    org.springframework: info
+    org.mybatis: debug
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{50} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{50} - %msg%n"
+  file:
+    name: ./logs/psyche-game.log
+    max-size: 10MB
+    max-history: 7

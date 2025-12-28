@@ -1,0 +1,12 @@
+{
+  "mode": "local",
+  "apiBaseUrl": "http://localhost:8080",
+  "websocketUrl": "ws://localhost:8081",
+  "localStorage": {
+    "prefix": "psyche-game-"
+  },
+  "pwa": {
+    "enabled": true,
+    "cacheStrategy": "advanced"
+  }
+}
